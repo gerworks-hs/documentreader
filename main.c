@@ -3,15 +3,19 @@
 #include <string.h>
 
 char* getPath() {
+	
 	//Error I got the first time in the following line:
 	//If you do not assign the char pointer (path) to some space in memory...
 	//You will get a segmentation fault when running fgets cause fgets does not know where to save data read from data stream (stdin)
 	//To avoid the previous error we need to assign to char pointer a pointer returned by malloc, malloc allocates memory for this pointer
+	
 	char* path = malloc((sizeof(char) * 100));
-	printf("Enter the file path: ");
+	
+	fprintf(stdout, "Enter the file path: ");
+	
 	if (fgets(path, 100, stdin) == NULL) {
-		printf("\n");
-		printf("Error reading from data stream\n");
+		fprintf(stdout, "\n");
+		fprintf(stderr, "Error reading from data stream\n");
 		char* aborted = NULL;
 		return aborted;
 	} else {
@@ -19,20 +23,31 @@ char* getPath() {
 			auto char* i = strchr(path, '\n');
 			*i = '\0';
 		}
-		printf("OK\n");
+		fprintf(stdout, "OK!\n");
 		return path;
 	}
+
 }
 
 int main() {
-	//FILE* fptr;
-	//fptr = fopen(path, "a");
+	
 	char* result = getPath();
+	
 	if (result == NULL) {
-		printf("Aborting...\n");
+		fprintf(stderr, "Aborting...\n");
 		return 1;
 	} else {
-		printf("Path is -> %s\n", result);
+		fprintf(stdout, "Path is -> %s\n", result);
 	}
-	return 0;
+	
+	FILE* fileptr;
+	
+	if ((fopen(result, "r")) == NULL) {
+		fprintf(stderr, "Cannot open the file: insufficient permissions or file does not exist\n");
+		fprintf(stderr, "Aborting...\n");
+		return 1;
+	} else {
+		fprintf(stdout, "File was opened succesfully, reading...\n");
+	}
+
 }

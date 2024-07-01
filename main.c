@@ -5,8 +5,9 @@
 char* getPath() {
 	//Error I got the first time in the following line:
 	//If you do not assign the char pointer (path) to some space in memory...
-	//you will get a segmentation fault when running fgets cause fgets does not know where to save data read from data stream (stdin)
-	char* path = malloc((sizeof(char) * 100)); //To avoid the previous error we need to assign to char pointer a pointer returned by malloc, malloc allocates memory for this pointer
+	//You will get a segmentation fault when running fgets cause fgets does not know where to save data read from data stream (stdin)
+	//To avoid the previous error we need to assign to char pointer a pointer returned by malloc, malloc allocates memory for this pointer
+	char* path = malloc((sizeof(char) * 100));
 	printf("Enter the file path: ");
 	if (fgets(path, 100, stdin) == NULL) {
 		printf("\n");
@@ -24,6 +25,6 @@ char* getPath() {
 int main() {
 	//FILE* fptr;
 	//fptr = fopen(path, "a");
-	printf("%s\n", getPath());
+	printf("File path -> %s\n", getPath());
 	return 0;
 }

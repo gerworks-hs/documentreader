@@ -16,7 +16,7 @@ char* getPath() {
 		return aborted;
 	} else {
 		while (strchr(path, '\n') != NULL) {
-			char* i = strchr(path, '\n');
+			auto char* i = strchr(path, '\n');
 			*i = '\0';
 		}
 		printf("OK\n");

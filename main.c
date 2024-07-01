@@ -12,19 +12,27 @@ char* getPath() {
 	if (fgets(path, 100, stdin) == NULL) {
 		printf("\n");
 		printf("Error reading from data stream\n");
+		char* aborted = NULL;
+		return aborted;
 	} else {
 		while (strchr(path, '\n') != NULL) {
 			char* i = strchr(path, '\n');
 			*i = '\0';
 		}
 		printf("OK\n");
+		return path;
 	}
-	return path;
 }
 
 int main() {
 	//FILE* fptr;
 	//fptr = fopen(path, "a");
-	printf("File path -> %s\n", getPath());
+	char* result = getPath();
+	if (result == NULL) {
+		printf("Aborting...\n");
+		return 1;
+	} else {
+		printf("Path is -> %s\n", result);
+	}
 	return 0;
 }

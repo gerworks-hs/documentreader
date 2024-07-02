@@ -16,11 +16,11 @@ char* getPath(char* whereToSave) {
 	if (fgets(whereToSave, 100, stdin) == NULL) {
 		fprintf(stdout, "\n");
 		fprintf(stderr, "Error reading from data stream\n");
-		auto char* aborted = NULL;
+		char* aborted = NULL;
 		return aborted;
 	} else {
 		while (strchr(whereToSave, '\n') != NULL) {
-			auto char* i = strchr(whereToSave, '\n');
+			char* i = strchr(whereToSave, '\n');
 			*i = '\0';
 		}
 		fprintf(stdout, "OK!\n");
@@ -62,7 +62,7 @@ int main() {
 		free(buffer);
 		fprintf(stdout, "File was opened succesfully, reading...\n");
 		
-		auto char* tempChar = malloc(sizeof(char));		
+		char* tempChar = malloc(sizeof(char));		
 		
 		fprintf(stdout, "--BEGIN OF FILE--\n");
 		
@@ -73,6 +73,7 @@ int main() {
 		fprintf(stdout, "--END OF FILE--\n");
 		
 		fprintf(stdout, "Exiting...\n");
+		free(tempChar);
 		return 0;
 	}
 

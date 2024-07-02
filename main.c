@@ -1,3 +1,5 @@
+//MADE BY @itsgerliz
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -75,3 +77,5 @@ int main() {
 	}
 
 }
+
+//MADE BY @itsgerliz
